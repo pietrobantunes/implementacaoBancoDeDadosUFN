@@ -9,6 +9,7 @@
 - **Diagrama lógico:** representa estrutura física do banco de dados
 - **Chave estrangeira:** sempre é puxada para a entidade N
 - **Entidade associativa:** gerada quando ocorre relacionamento N..N, puxando as chaves primárias das entidades, criando uma chave primária composta
+- **Candidatos a entidade:** se houver muita duplicidade
 
 ### **Modelo Conceitual:**
 <img width="935" height="635" alt="image" src="https://github.com/user-attachments/assets/ff356e51-4a54-46c1-b522-182de3accb26" />
