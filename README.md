@@ -6,3 +6,4 @@
 - **Atributo multivalorado:** atributo que a pessoa pode ter um ou mais registrado (ex: telefone)
 - **Atributo monovalorado:** atributo que a pessoa só pode ter um (ex: CPF)
 - **Diagrama lógico:** representa estrutura física do banco de dados
+- **Chave estrangeira:** sempre é puxada para a entidade N
