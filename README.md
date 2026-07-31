@@ -8,3 +8,12 @@
 - **Atributo monovalorado:** atributo que a pessoa só pode ter um (ex: CPF)
 - **Diagrama lógico:** representa estrutura física do banco de dados
 - **Chave estrangeira:** sempre é puxada para a entidade N
+- **Entidade associativa:** gerada quando ocorre relacionamento N..N, puxando as chaves primárias das entidades, criando uma chave primária composta
+
+- **Modelo Conceitual:**
+<img width="935" height="635" alt="image" src="https://github.com/user-attachments/assets/ff356e51-4a54-46c1-b522-182de3accb26" />
+
+- **Modelo Lógico:**
+<img width="704" height="653" alt="image" src="https://github.com/user-attachments/assets/e93094f1-98ba-46f4-bacc-1a6bf592ce54" />
+
+
