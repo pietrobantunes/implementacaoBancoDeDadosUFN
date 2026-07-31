@@ -1,4 +1,4 @@
-# implementacaoBancoDeDadosUFN
+# Implementação de Banco de Dados
 
 # Aula 1
-Revisão
+> E
