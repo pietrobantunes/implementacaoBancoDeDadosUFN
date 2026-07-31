@@ -5,3 +5,4 @@
 - **Chave primária natural:** faz parte da entidade (ex: CPF, email)
 - **Atributo multivalorado:** atributo que a pessoa pode ter um ou mais registrado (ex: telefone)
 - **Atributo monovalorado:** atributo que a pessoa só pode ter um (ex: nome)
+- **Diagrama lógico:** representa estrutura física do banco de dados
