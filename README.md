@@ -5,7 +5,7 @@
   - OBS: *Se a entidade forte é apagada, a entidade fraca é apagada junto, sendo dependente da outra entidade*
 <img width="640" height="158" alt="image" src="https://github.com/user-attachments/assets/ab8ed127-e036-4748-94d6-18a581a1e96c" />
 
-- **DDL: Data Definition Language:**
+- **DDL // Data Definition Language:**
   - **CREATE:** Cria um novo objeto no banco de dados
     - **CREATE SCHEMA ou CREATE DATABASE:** para criar um banco de dados
     - **CREATE TABLE:** para criar uma nova tabela em um banco de dados
@@ -63,6 +63,13 @@ CHANGE idLivro ISBN varchar(20);
 ```
 <img width="534" height="258" alt="image" src="https://github.com/user-attachments/assets/6326851a-2b49-474d-b406-2ff7c19e4670" />
 
+- **DML // Data Manipulation Language:**
+	- **INSERT INTO:** Insere valores em uma coluna
+		- *INSERT INTO nome_tabela (coluna1, coluna2, coluna3, ...)*
+		- *VALUES (valor1, valor2, valor3, ...);*
+	- **SELECT:** Seleciona informações de uma tabela e exibe
+ 	- **DELETE/UPDATE FROM:** Delete/Atualiza dados de uma tabela
+		- *NÃO UTILIZAR SEM A CLÁUSULA "WHERE"*
 ---
 ## Aula 1
 ### Programa utilizado: brModelo.jar
