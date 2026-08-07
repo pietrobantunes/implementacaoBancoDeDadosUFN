@@ -1,6 +1,9 @@
 # Implementação de Banco de Dados
-
-## Aula 1 - Revisão
+---
+## Aula 2
+<img width="674" height="178" alt="image" src="https://github.com/user-attachments/assets/e4d29d41-6a3b-4d04-a2d8-2dda1f661d88" />
+---
+## Aula 1
 ### Programa utilizado: brModelo.jar
 - **Revisão de Banco de Dados:** https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2000%20-%20Boas%20pr%C3%A1ticas.md
 - **Chave primária natural:** faz parte da entidade (ex: CPF, email)
@@ -16,5 +19,6 @@
 
 ### **Modelo Lógico:**
 <img width="704" height="653" alt="image" src="https://github.com/user-attachments/assets/e93094f1-98ba-46f4-bacc-1a6bf592ce54" />
+
 
 
