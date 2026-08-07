@@ -5,6 +5,14 @@
   - OBS: *Se a entidade forte é apagada, a entidade fraca é apagada junto, sendo dependente da outra entidade*
 <img width="640" height="158" alt="image" src="https://github.com/user-attachments/assets/ab8ed127-e036-4748-94d6-18a581a1e96c" />
 
+- **DDL: Data Definition Language:**
+  - **CREATE:** Cria um novo objeto no banco de dados
+    - **CREATE SCHEMA ou CREATE DATABASE:** para criar um banco de dados
+    - **CREATE TABLE:** para criar uma nova tabela em um banco de dados
+  - **ALTER:** Modifica a estrutura do banco de dados
+  - **DROP:** Remove objetos do banco de dados
+  - **TRUNCATE:** Remove todos os registros de uma tabela
+
 ---
 ## Aula 1
 ### Programa utilizado: brModelo.jar
