@@ -89,8 +89,8 @@ INSERT INTO editora
 VALUES	("Companhia das Letras", "São Paulo", "www.cdl.br", 1986, 201),
 		("Penguin", "Londres", "www.pg.ldn", 1935, 202);
 INSERT INTO livro
-VALUES  ("Dom Casmurro", 1901, "9874689", 101, 201),
-		("1984", 1949, "9500234", 102, 202);
+VALUES  ("Dom Casmurro", 1901, "9874689", 101, 301),
+		("1984", 1949, "9500234", 102, 302);
         
 -- Recuperando as informações
 SELECT * FROM autor;
