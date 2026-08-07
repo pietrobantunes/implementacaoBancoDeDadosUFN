@@ -10,7 +10,7 @@
     - **CREATE SCHEMA ou CREATE DATABASE:** para criar um banco de dados
     - **CREATE TABLE:** para criar uma nova tabela em um banco de dados
   - **ALTER:** Modifica a estrutura do banco de dados
-  - **DROP:** Remove objetos do banco de dados
+  - **DROP <tipo>:** Remove objetos do banco de dados
   - **TRUNCATE:** Remove todos os registros de uma tabela
 
   - **Strings:**
