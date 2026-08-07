@@ -22,6 +22,31 @@
     - **UNIQUE:** Garante que os valores sejam diferentes
     - **PRIMARY KEY:** Combinação de NOT NULL e UNIQUE
     - **FOREIGN KEY:** Impede ações que destruiriam as ligações entre as tabelas
+   
+```
+-- Criando meu banco
+CREATE DATABASE biblioteca;
+-- Colocar o banco criado em uso
+USE biblioteca;
+-- Criando uma tabela
+CREATE TABLE autor(
+	nome varchar(50) NOT NULL,
+    nacionalidade varchar(50) NOT NULL,
+    idAutor int PRIMARY KEY
+);
+CREATE TABLE livro(
+	titulo text NOT NULL,
+    ano_publicacao year NOT NULL,
+    idLivro int PRIMARY KEY,
+    fk_idAutor int,
+    FOREIGN KEY (fk_idAutor) REFERENCES autor(idAutor)
+);
+-- Exibe as tabelas do banco
+SHOW TABLES;
+-- Exibe metadados da tabela
+DESC autor;
+```
+<img width="534" height="258" alt="image" src="https://github.com/user-attachments/assets/6326851a-2b49-474d-b406-2ff7c19e4670" />
 
 ---
 ## Aula 1
