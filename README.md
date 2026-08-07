@@ -10,7 +10,7 @@
     - **CREATE SCHEMA ou CREATE DATABASE:** para criar um banco de dados
     - **CREATE TABLE:** para criar uma nova tabela em um banco de dados
   - **ALTER:** Modifica a estrutura do banco de dados
-  - **DROP <tipo>:** Remove objetos do banco de dados
+  - **DROP:** Remove objetos do banco de dados
   - **TRUNCATE:** Remove todos os registros de uma tabela
 
   - **Strings:**
@@ -38,13 +38,28 @@ CREATE TABLE livro(
 	titulo text NOT NULL,
     ano_publicacao year NOT NULL,
     idLivro int PRIMARY KEY,
-    fk_idAutor int,
-    FOREIGN KEY (fk_idAutor) REFERENCES autor(idAutor)
+    fk_idAutor int
 );
 -- Exibe as tabelas do banco
 SHOW TABLES;
 -- Exibe metadados da tabela
 DESC autor;
+-- Adicionando FK via alteração
+ALTER TABLE livro
+ADD CONSTRAINT fk_Autor -- nome da restrição
+FOREIGN KEY (fk_idAutor) REFERENCES autor(idAutor);
+-- Adicionando uma nova coluna
+ALTER TABLE livro
+ADD genero varchar(50) NOT NULL;
+-- Remover uma coluna
+ALTER TABLE livro
+DROP COLUMN genero;
+-- Modificar o tipo de dado de uma coluna
+ALTER TABLE autor
+MODIFY COLUMN nacionalidade char(2);
+-- Alterando o nome de uma coluna
+ALTER TABLE livro
+CHANGE idLivro ISBN varchar(20);
 ```
 <img width="534" height="258" alt="image" src="https://github.com/user-attachments/assets/6326851a-2b49-474d-b406-2ff7c19e4670" />
 
