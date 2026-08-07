@@ -13,7 +13,7 @@
   - **DROP:** Remove objetos do banco de dados
   - **TRUNCATE:** Remove todos os registros de uma tabela
 
-  - **STRINGS:**
+  - **Strings:**
     - **VARCHAR(n):** Ocupa até "n" digitos (máximo 255)
     - **CHAR(n):** Ocupa "n" digitos, os que não forem preenchidos se tornam espaços vazios, mas ainda sendo utilziados
     - **TEXT:** Usado para descrições e textos longos (65k+ de caracteres)
