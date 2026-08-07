@@ -1,7 +1,9 @@
 # Implementação de Banco de Dados
 ---
 ## Aula 2
-<img width="674" height="178" alt="image" src="https://github.com/user-attachments/assets/e4d29d41-6a3b-4d04-a2d8-2dda1f661d88" />
+- **Entidade fraca: é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria
+<img width="640" height="158" alt="image" src="https://github.com/user-attachments/assets/ab8ed127-e036-4748-94d6-18a581a1e96c" />
+
 ---
 ## Aula 1
 ### Programa utilizado: brModelo.jar
