@@ -13,6 +13,16 @@
   - **DROP:** Remove objetos do banco de dados
   - **TRUNCATE:** Remove todos os registros de uma tabela
 
+  - **STRINGS:**
+    - **VARCHAR(n):** Ocupa até "n" digitos (máximo 255)
+    - **CHAR(n):** Ocupa "n" digitos, os que não forem preenchidos se tornam espaços vazios, mas ainda sendo utilziados
+    - **TEXT:** Usado para descrições e textos longos (65k+ de caracteres)
+  - **Restrições:**
+    - **NOT NULL:** Proibe valores NULL
+    - **UNIQUE:** Garante que os valores sejam diferentes
+    - **PRIMARY KEY:** Combinação de NOT NULL e UNIQUE
+    - **FOREIGN KEY:** Impede ações que destruiriam as ligações entre as tabelas
+
 ---
 ## Aula 1
 ### Programa utilizado: brModelo.jar
