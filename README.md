@@ -103,6 +103,16 @@ WHERE autor.idAutor = 103;
 UPDATE autor
 SET autor.nacionalidade = "US"
 WHERE autor.idAutor = 103;
+
+-- Selecionado e exibindo informações de uma tabela 1
+SELECT l.titulo, l.ano_publicacao
+FROM livro AS l
+WHERE l.titulo LIKE "%Dom%";
+-- Selecionado e exibindo informações de uma tabela 2
+SELECT l.titulo AS "Título", l.ano_publicacao AS "Ano", CONCAT(a.nome, "/", a.nacionalidade) AS "Autor/Nasc", e.nome AS "Editora"
+FROM livro AS l
+JOIN autor AS a ON l.fk_idAutor = a.idAutor
+JOIN editora AS e ON l.fk_idEditora = e.idEditora;
 ```
 <img width="534" height="258" alt="image" src="https://github.com/user-attachments/assets/6326851a-2b49-474d-b406-2ff7c19e4670" />
 
