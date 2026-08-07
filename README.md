@@ -2,6 +2,7 @@
 ---
 ## Aula 2
 - **Entidade fraca:** é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria
+  - *Se a entidade forte é apagada, a entidade fraca é apagada junto, sendo dependente da outra entidade*
 <img width="640" height="158" alt="image" src="https://github.com/user-attachments/assets/ab8ed127-e036-4748-94d6-18a581a1e96c" />
 
 ---
