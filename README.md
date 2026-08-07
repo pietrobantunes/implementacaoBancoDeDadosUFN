@@ -1,7 +1,7 @@
 # Implementação de Banco de Dados
 ---
 ## Aula 2
-- **Entidade fraca: é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria
+- **Entidade fraca:** é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria
 <img width="640" height="158" alt="image" src="https://github.com/user-attachments/assets/ab8ed127-e036-4748-94d6-18a581a1e96c" />
 
 ---
