@@ -67,9 +67,14 @@ CHANGE idLivro ISBN varchar(20);
 	- **INSERT INTO:** Insere valores em uma coluna
 		- *INSERT INTO nome_tabela (coluna1, coluna2, coluna3, ...)*
 		- *VALUES (valor1, valor2, valor3, ...);*
-	- **SELECT:** Seleciona informações de uma tabela e exibe
- 	- **DELETE/UPDATE FROM:** Delete/Atualiza dados de uma tabela
-		- *NÃO UTILIZAR SEM A CLÁUSULA "WHERE"*
+	- **SELECT:** Seleciona informações de uma tabela
+  		- *SELECT -> FROM -> WHERE*
+      		- SELECT (lista de atributos)
+          	- FROM (lista de tabelas)
+          	- WHERE (condição)
+  				- ```=, >, <, >=, <=, <> ou !=, BETWEEN, LIKE, AND, OR```
+ 	- **DELETE FROM/UPDATE:** Deleta/Atualiza valores de uma tabela
+		- *[!] NÃO UTILIZAR SEM A CLÁUSULA "WHERE"*
 ---
 ## Aula 1
 ### Programa utilizado: brModelo.jar
