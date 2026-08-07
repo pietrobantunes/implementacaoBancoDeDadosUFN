@@ -28,38 +28,81 @@
 CREATE DATABASE biblioteca;
 -- Colocar o banco criado em uso
 USE biblioteca;
+
 -- Criando uma tabela
 CREATE TABLE autor(
 	nome varchar(50) NOT NULL,
     nacionalidade varchar(50) NOT NULL,
+    ano_nascimento int NOT NULL,
     idAutor int PRIMARY KEY
 );
 CREATE TABLE livro(
 	titulo text NOT NULL,
     ano_publicacao year NOT NULL,
     idLivro int PRIMARY KEY,
-    fk_idAutor int
+    fk_idAutor int,
+    fk_idEditora int
 );
+CREATE TABLE editora(
+	nome varchar(50) NOT NULL,
+    cidade varchar(50) NOT NULL,
+    site varchar(100),
+    ano_fundacao int NOT NULL,
+    idEditora int PRIMARY KEY
+);
+
 -- Exibe as tabelas do banco
 SHOW TABLES;
 -- Exibe metadados da tabela
 DESC autor;
--- Adicionando FK via alteração
+
+-- Adicionando FK via alteração 1
 ALTER TABLE livro
 ADD CONSTRAINT fk_Autor -- nome da restrição
 FOREIGN KEY (fk_idAutor) REFERENCES autor(idAutor);
+-- Adicionando FK via alteração 2
+ALTER TABLE livro
+ADD CONSTRAINT fk_Editora
+FOREIGN KEY (fk_idEditora) REFERENCES editora(idEditora);
+
 -- Adicionando uma nova coluna
 ALTER TABLE livro
 ADD genero varchar(50) NOT NULL;
 -- Remover uma coluna
 ALTER TABLE livro
 DROP COLUMN genero;
+
 -- Modificar o tipo de dado de uma coluna
 ALTER TABLE autor
 MODIFY COLUMN nacionalidade char(2);
+
 -- Alterando o nome de uma coluna
 ALTER TABLE livro
-CHANGE idLivro ISBN varchar(20);
+CHANGE idLivro ISBN char(13);
+
+-- Inserindo valores
+INSERT INTO autor
+VALUES 	("Machado de Assis", "BR", 1839, 101),
+		("George Orwell", "UK", 1903, 102),
+        ("Juca da Silva", "BR", 2010, 103);
+INSERT INTO editora
+VALUES	("Companhia das Letras", "São Paulo", "www.cdl.br", 1986, 201),
+		("Penguin", "Londres", "www.pg.ldn", 1935, 202);
+INSERT INTO livro
+VALUES  ("Dom Casmurro", 1901, "9874689", 101, 201),
+		("1984", 1949, "9500234", 102, 202);
+        
+-- Recuperando as informações
+SELECT * FROM autor;
+
+-- Deletando um valor
+DELETE FROM autor
+WHERE autor.idAutor = 103;
+
+-- Alterando um valor
+UPDATE autor
+SET autor.nacionalidade = "US"
+WHERE autor.idAutor = 103;
 ```
 <img width="534" height="258" alt="image" src="https://github.com/user-attachments/assets/6326851a-2b49-474d-b406-2ff7c19e4670" />
 
