@@ -1,5 +1,77 @@
 # Implementação de Banco de Dados
 ---
+## Aula 3
+- **CONSULTAS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2002%20-%20Consultas%20.pdf** *(Programa: SQL Server)*
+```
+-- Distinct
+SELECT DISTINCT F.Salario
+FROM FUNCIONARIO AS F;
+
+-- Where
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Pnome = 'Carlos';
+
+-- And
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Sexo = 'M' 
+AND F.Salario >= '30000';
+
+-- Or
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Endereco LIKE '%São Paulo%' 
+OR F.Endereco LIKE '%Curitiba%';
+
+-- Not 
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE NOT F.Endereco LIKE '%São Paulo%';
+
+-- Order by
+SELECT F.Pnome AS 'Nome', F.Unome AS 'Sobrenome', F.Endereco, F.Salario * 12 AS 'CustoAnual'
+FROM FUNCIONARIO AS F
+ORDER BY CustoAnual DESC;
+
+-- Is null
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Cpf_supervisor IS NULL;
+
+-- Is not null
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Cpf_supervisor IS NOT NULL;
+
+-- Select top (ou "Limit" em MySql) 
+SELECT TOP 3 F.Pnome AS 'Nome', F.Unome AS 'Sobrenome', F.Endereco, F.Salario
+FROM FUNCIONARIO AS F
+ORDER BY F.Salario DESC;
+
+-- Função MIN()
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario = (SELECT MIN(Salario) FROM FUNCIONARIO);
+    -- ou
+DECLARE @salario_min DECIMAL(10, 2);
+SET @salario_min = (SELECT MIN(Salario) FROM FUNCIONARIO);
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario = @salario_min;
+
+-- Função MAX()
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario = (SELECT MAX(Salario) FROM FUNCIONARIO);
+    -- ou
+DECLARE @salario_max DECIMAL(10, 2);
+SET @salario_max = (SELECT MAX(Salario) FROM FUNCIONARIO);
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario = @salario_max;
+```
+---
 ## Aula 2
 - **Entidade fraca:** é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria, logo ela acaba sendo composta pela chave primária da outra entidade no qual se relaciona (a entidade forte)
   - OBS: *Se a entidade forte é apagada, a entidade fraca é apagada junto, sendo dependente da outra entidade*
