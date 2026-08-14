@@ -70,7 +70,15 @@ SET @salario_max = (SELECT MAX(Salario) FROM FUNCIONARIO);
 SELECT *
 FROM FUNCIONARIO AS F
 WHERE F.Salario = @salario_max;
+
+-- Like
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Datanasc LIKE '__72%';
 ```
+- **LIKE:**
+<img width="1009" height="447" alt="image" src="https://github.com/user-attachments/assets/45325734-9c82-4a07-873b-7db9803be3d9" />
+
 ---
 ## Aula 2
 - **Entidade fraca:** é um componente de banco de dados que não possui atributos suficientes para formar uma chave primária própria, logo ela acaba sendo composta pela chave primária da outra entidade no qual se relaciona (a entidade forte)
