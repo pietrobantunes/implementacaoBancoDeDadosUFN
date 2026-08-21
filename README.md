@@ -79,15 +79,17 @@ WHERE F.Datanasc LIKE '__72%';
 -- In
 SELECT F.Pnome AS Nome, T.Pnr AS Projeto, T.Horas
 FROM TRABALHA_EM AS T, FUNCIONARIO AS F
-WHERE F.Cpf = T.Fcpf 
+WHERE F.Cpf = T.Fcpf
+      AND F.Pnome != 'Fernando'
       AND T.Pnr IN (
-                   SELECT Pnr 
-                   FROM TRABALHA_EM
-                   WHERE Fcpf = (
-                                SELECT CPF FROM FUNCIONARIO WHERE Pnome = 'Fernando'
-                                )
-                   ) 
-      AND F.Pnome != 'Fernando';
+        SELECT Pnr 
+        FROM TRABALHA_EM
+        WHERE Fcpf = (
+            SELECT CPF 
+            FROM FUNCIONARIO 
+            WHERE Pnome = 'Fernando'
+            )
+        );
 
 -- Between
 SELECT *
