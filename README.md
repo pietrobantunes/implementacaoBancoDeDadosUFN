@@ -19,6 +19,28 @@ ON T.Pnr = P.Projnumero
     INNER JOIN FUNCIONARIO AS F
     ON F.Cpf = T.Fcpf
 WHERE P.Projnome = 'ProdutoX';
+
+SELECT D.Dnome, P.Projnome, P.Projlocal, D.Cpf_gerente, F.Pnome, F.Unome, F.Endereco
+FROM DEPARTAMENTO AS D
+JOIN PROJETO AS P
+ON P.Dnum = D.Dnumero
+    JOIN FUNCIONARIO AS F
+    ON F.Cpf = D.Cpf_gerente
+WHERE P.Projlocal = 'Mauá'
+
+-- Left join
+SELECT F.Unome, D.Dnome
+FROM FUNCIONARIO AS F
+LEFT JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+ORDER BY D.Dnome ASC
+
+SELECT F.Unome, D.Dnome
+FROM DEPARTAMENTO AS D
+LEFT JOIN FUNCIONARIO AS F
+ON F.Dnr = D.Dnumero
+WHERE F.Cpf IS NULL
+ORDER BY D.Dnome ASC
 ```
 ---
 ## Aula 3
