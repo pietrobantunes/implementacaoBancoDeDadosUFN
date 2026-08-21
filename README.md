@@ -1,6 +1,6 @@
 # Implementação de Banco de Dados
 ---
-## Aula 3
+## Aula 3 + 4
 - **CONSULTAS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2002%20-%20Consultas%20.pdf** *(Programa: SQL Server)*
 ```
 -- Distinct
@@ -75,6 +75,24 @@ WHERE F.Salario = @salario_max;
 SELECT *
 FROM FUNCIONARIO AS F
 WHERE F.Datanasc LIKE '__72%';
+
+-- In
+SELECT F.Pnome AS Nome, T.Pnr AS Projeto, T.Horas
+FROM TRABALHA_EM AS T, FUNCIONARIO AS F
+WHERE F.Cpf = T.Fcpf 
+      AND T.Pnr IN (
+                   SELECT Pnr 
+                   FROM TRABALHA_EM
+                   WHERE Fcpf = (
+                                SELECT CPF FROM FUNCIONARIO WHERE Pnome = 'Fernando'
+                                )
+                   ) 
+      AND F.Pnome != 'Fernando';
+
+-- Between
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario BETWEEN 30000 AND 40000;
 ```
 - **LIKE:**
 <img width="1009" height="447" alt="image" src="https://github.com/user-attachments/assets/45325734-9c82-4a07-873b-7db9803be3d9" />
