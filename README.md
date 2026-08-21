@@ -1,6 +1,27 @@
 # Implementação de Banco de Dados
 ---
-## Aula 3 + 4
+## Aula 4
+- **JOINS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2003%20-%20Consultas%20Joins.pdf**
+<img width="592" height="458" alt="image" src="https://github.com/user-attachments/assets/05c06e30-756d-4dcf-9da0-118ef89903dc" />
+
+```
+-- Inner join
+SELECT F.Pnome AS Nome, F.Unome AS Sobrenome, F.Endereco, D.Dnome AS Departamento
+FROM FUNCIONARIO AS F
+INNER JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+WHERE D.Dnome = 'Pesquisa';
+
+SELECT F.Pnome AS Nome, F.Unome AS Sobrenome, F.Endereco, P.Projnome AS Projeto, T.Horas
+FROM TRABALHA_EM AS T
+INNER JOIN PROJETO AS P
+ON T.Pnr = P.Projnumero
+    INNER JOIN FUNCIONARIO AS F
+    ON F.Cpf = T.Fcpf
+WHERE P.Projnome = 'ProdutoX';
+```
+---
+## Aula 3
 - **CONSULTAS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2002%20-%20Consultas%20.pdf** *(Programa: SQL Server)*
 ```
 -- Distinct
