@@ -41,6 +41,35 @@ LEFT JOIN FUNCIONARIO AS F
 ON F.Dnr = D.Dnumero
 WHERE F.Cpf IS NULL
 ORDER BY D.Dnome ASC
+
+-- Right join
+SELECT F.Unome, D.Dnome
+FROM FUNCIONARIO AS F
+RIGHT JOIN DEPARTAMENTO AS D -- só muda a ordem que as tabelas são chamadas
+ON F.Dnr = D.Dnumero
+WHERE F.Cpf IS NULL
+ORDER BY D.Dnome ASC
+
+-- Cross join (ou full join)
+SELECT *
+FROM FUNCIONARIO AS F
+FULL JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+WHERE D.Dnumero IS NULL OR F.Cpf IS NULL
+
+-- Self join
+SELECT F.Pnome AS Funcionario, S.Pnome AS Supervisor
+FROM FUNCIONARIO AS F
+JOIN FUNCIONARIO AS S
+ON F.Cpf_supervisor = S.Cpf
+ORDER BY Supervisor
+
+-- Union
+SELECT F.Pnome AS 'Nome', F.Sexo AS 'Sexo', F.Datanasc AS 'Data'
+FROM FUNCIONARIO AS F
+    UNION -- +
+    SELECT D.Nome_dependente AS 'Nome', D.Sexo AS 'Sexo', D.Datanasc AS 'Data'
+    FROM DEPENDENTE AS D
 ```
 ---
 ## Aula 3
