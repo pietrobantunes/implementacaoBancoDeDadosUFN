@@ -1,6 +1,6 @@
 # Implementação de Banco de Dados
 ---
-## Aula 4
+## Aula 4 + Aula 5
 - **JOINS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2003%20-%20Consultas%20Joins.pdf**
 <img width="592" height="458" alt="image" src="https://github.com/user-attachments/assets/05c06e30-756d-4dcf-9da0-118ef89903dc" />
 
@@ -64,12 +64,66 @@ JOIN FUNCIONARIO AS S
 ON F.Cpf_supervisor = S.Cpf
 ORDER BY Supervisor
 
--- Union
+-- Union (e union all)
 SELECT F.Pnome AS 'Nome', F.Sexo AS 'Sexo', F.Datanasc AS 'Data'
 FROM FUNCIONARIO AS F
-    UNION -- +
+    UNION -- remove duplicidades
     SELECT D.Nome_dependente AS 'Nome', D.Sexo AS 'Sexo', D.Datanasc AS 'Data'
     FROM DEPENDENTE AS D
+
+SELECT P.Projlocal AS 'Local'
+FROM PROJETO AS P
+    UNION ALL -- mostra duplicidades
+    SELECT L.Dlocal AS 'Local'
+    FROM LOCALIZACAO_DEP AS L
+
+-- Except
+SELECT F.Cpf, F.Pnome
+FROM FUNCIONARIO AS F
+    EXCEPT
+    SELECT D.Cpf_gerente, F.Pnome
+    FROM DEPARTAMENTO AS D
+JOIN FUNCIONARIO AS F
+ON D.Cpf_gerente = F.Cpf
+
+-- Intersect
+SELECT F.Cpf
+FROM FUNCIONARIO AS F
+    INTERSECT
+    SELECT S.Cpf_supervisor
+    FROM FUNCIONARIO AS S
+
+-- Group by
+SELECT COUNT(F.Cpf) AS 'Qtd', F.Sexo -- fumção vai aqui em cima
+FROM FUNCIONARIO AS F
+GROUP BY F.Sexo
+ORDER BY F.Sexo ASC
+
+SELECT COUNT(F.Cpf) AS 'Qtd', D.Dnome
+FROM FUNCIONARIO AS F
+JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+GROUP BY D.Dnome
+
+SELECT SUM(F.Salario) AS 'Salário', D.Dnome
+FROM FUNCIONARIO AS F
+JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+GROUP BY D.Dnome
+
+SELECT AVG(T.Horas) AS Hrs, P.Projnome
+FROM TRABALHA_EM AS T
+JOIN PROJETO AS P
+ON P.Projnumero = T.Pnr
+GROUP BY P.Projnome
+
+-- Having
+
+-- Exists
+
+-- Any
+
+-- All
 ```
 ---
 ## Aula 3
