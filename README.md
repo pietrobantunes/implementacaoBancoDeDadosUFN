@@ -111,13 +111,32 @@ JOIN DEPARTAMENTO AS D
 ON F.Dnr = D.Dnumero
 GROUP BY D.Dnome
 
-SELECT AVG(T.Horas) AS Hrs, P.Projnome
+SELECT AVG(T.Horas) AS 'M Hrs', P.Projnome
 FROM TRABALHA_EM AS T
 JOIN PROJETO AS P
 ON P.Projnumero = T.Pnr
 GROUP BY P.Projnome
 
+SELECT MAX(F.Salario) AS 'Salário', D.Dnome
+FROM FUNCIONARIO AS F
+JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+GROUP BY D.Dnome
+
 -- Having
+SELECT COUNT(F.Cpf) AS 'Func', D.Dnome
+FROM FUNCIONARIO AS F
+JOIN DEPARTAMENTO AS D
+ON F.Dnr = D.Dnumero
+GROUP BY D.Dnome
+HAVING COUNT(F.Cpf) > 3
+
+SELECT SUM(T.Horas) AS 'Total Hrs', P.Projnome
+FROM TRABALHA_EM AS T
+JOIN PROJETO AS P
+ON P.Projnumero = T.Pnr
+GROUP BY P.Projnome
+HAVING SUM(T.Horas) >= 50
 
 -- Exists
 
