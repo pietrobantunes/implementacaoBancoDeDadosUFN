@@ -1,5 +1,25 @@
 # Implementação de Banco de Dados
 ---
+## Aula 6
+- **VARIÁVEIS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2004%20-%20Vari%C3%A1veis%20-%20Convers%C3%B5es%20-%20If%20Else%20-%20While.pdf**
+
+```
+-- CAST & CONVERT
+-- Usando CAST para converter o salário decimal em uma string
+SELECT	'O funcionário ' 
+		+ F.Pnome 
+		+ ' tem um salário de: R$ ' 
+		+ CAST(Salario AS VARCHAR(20)) AS 'Nome / Salário'
+FROM Funcionario AS F;
+
+-- Usando CONVERT para converter o salário decimal em uma string
+SELECT	'O funcionário ' 
+		+ F.Pnome 
+		+ ' tem um salário de: R$ ' 
+		+ CONVERT(VARCHAR(20), Salario) AS 'Nome / Salário'
+FROM Funcionario AS F;
+```
+---
 ## Aula 4 + Aula 5
 - **JOINS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2003%20-%20Consultas%20Joins.pdf**
 <img width="592" height="458" alt="image" src="https://github.com/user-attachments/assets/05c06e30-756d-4dcf-9da0-118ef89903dc" />
