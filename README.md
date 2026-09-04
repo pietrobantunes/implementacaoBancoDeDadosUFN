@@ -27,7 +27,6 @@ SELECT	'O funcionário '
 FROM Funcionario AS F;
 ```
 ```
--- IF ELSE
 DECLARE @nome VARCHAR(100),
 		@salario DECIMAL(10,2),
 		@salario_medio DECIMAL(10,2);
@@ -59,29 +58,84 @@ ELSE
 
 GO
 
-----------
+--------------------
 
 DECLARE @dataNasc DATE,
 		@anoAtual INT,
 		@idade INT,
 		@nome VARCHAR(100);
 
-
-SET @nome = 'Ana';
+SET @nome = 'Maria';
 SET @anoAtual = YEAR(GETDATE());
 
 SELECT @dataNasc = F.Datanasc
 FROM FUNCIONARIO AS F
 WHERE F.Pnome = @nome;
 
-SET @idade = @anoAtual - YEAR(@dataNasc)
+IF MONTH(@dataNasc) > MONTH(GETDATE())
+	SET @idade = ((@anoAtual - YEAR(@dataNasc)) - 1);
+ELSE IF (MONTH(@dataNasc) = MONTH(GETDATE()) 
+	AND DAY(@dataNasc) > DAY(GETDATE()))
+	SET @idade = ((@anoAtual - YEAR(@dataNasc)) - 1);
+ELSE
+	SET @idade = @anoAtual - YEAR(@dataNasc);
 
 IF @idade <= 55
 	PRINT 'O funcionário(a) ' + @nome + ' está LONGE da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3)) +' anos)'
-ELSE IF @idade >= 56 AND @idade <= 60
+ELSE IF @idade >= 56 
+	AND @idade <= 60
 	PRINT 'O funcionário(a) ' + @nome + ' está PRÓXIMO da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3)) +' anos)'
 ELSE
 	PRINT 'O funcionário(a) ' + @nome + ' PASSOU da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3))+' anos)'
+
+GO
+
+--------------------
+
+SELECT F.Pnome,
+	   F.Unome, 
+	   F.Salario,
+	   CASE
+			WHEN F.Salario <= 10000 AND F.Salario > 0 THEN 'Baixo'
+			WHEN F.Salario > 10000 AND F.Salario <= 30000 THEN 'Médio'
+			WHEN F.Salario > 30000 THEN 'Alto'
+			ELSE 'ERRO'
+	   END AS 'Categoria'
+FROM FUNCIONARIO AS F;
+```
+```
+-- LOOP WHILE
+DECLARE @contador INT = 0;
+
+WHILE @contador < 10
+BEGIN
+	SET @contador = @contador + 1
+	IF @contador % 2 = 0
+		CONTINUE
+	PRINT 'Contador: ' + CAST(@contador AS VARCHAR(3))
+END
+
+GO
+
+--------------------
+
+DECLARE @nome VARCHAR(50)
+
+DECLARE cursorFuncionario CURSOR FOR
+SELECT Pnome FROM FUNCIONARIO;
+
+OPEN cursorFuncionario;
+
+FETCH NEXT FROM cursorFuncionario INTO @nome;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	PRINT @nome
+	FETCH NEXT FROM cursorFuncionario INTO @nome
+END
+
+CLOSE cursorFuncionario;
+DEALLOCATE cursorFuncionario;
 ```
 ---
 ## Aula 4 + Aula 5
