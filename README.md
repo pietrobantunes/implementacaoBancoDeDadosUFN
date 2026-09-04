@@ -18,6 +18,70 @@ SELECT	'O funcionário '
 		+ ' tem um salário de: R$ ' 
 		+ CONVERT(VARCHAR(20), Salario) AS 'Nome / Salário'
 FROM Funcionario AS F;
+
+-- Usando CONVERT para formatar a data de nascimento no formato DD/MM/YYYY
+SELECT	'O funcionário ' 
+		+ F.Pnome
+		+ ' nasceu em: ' 
+		+ CONVERT(VARCHAR(10), F.Datanasc, 103) AS 'Nome / Data de Nascimento'
+FROM Funcionario AS F;
+```
+```
+-- IF ELSE
+DECLARE @nome VARCHAR(100),
+		@salario DECIMAL(10,2),
+		@salario_medio DECIMAL(10,2);
+
+SET @nome = 'Jennifer';
+
+SELECT @salario = F.Salario
+FROM FUNCIONARIO AS F
+WHERE F.Pnome = @nome;
+
+SELECT @salario_medio = AVG(F.Salario)
+FROM FUNCIONARIO AS F
+
+IF (@salario < @salario_medio)
+	PRINT 'O funcionário(a) ' + @nome + ' ganha abaixo da média'
+ELSE
+	PRINT 'O funcionário(a) ' + @nome + ' ganha acima da média'
+
+IF (@salario < @salario_medio)
+	BEGIN
+	PRINT @salario
+	PRINT @salario_medio
+	END;
+ELSE
+	BEGIN
+	PRINT @salario
+	PRINT @salario_medio
+	END;
+
+GO
+
+----------
+
+DECLARE @dataNasc DATE,
+		@anoAtual INT,
+		@idade INT,
+		@nome VARCHAR(100);
+
+
+SET @nome = 'Ana';
+SET @anoAtual = YEAR(GETDATE());
+
+SELECT @dataNasc = F.Datanasc
+FROM FUNCIONARIO AS F
+WHERE F.Pnome = @nome;
+
+SET @idade = @anoAtual - YEAR(@dataNasc)
+
+IF @idade <= 55
+	PRINT 'O funcionário(a) ' + @nome + ' está LONGE da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3)) +' anos)'
+ELSE IF @idade >= 56 AND @idade <= 60
+	PRINT 'O funcionário(a) ' + @nome + ' está PRÓXIMO da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3)) +' anos)'
+ELSE
+	PRINT 'O funcionário(a) ' + @nome + ' PASSOU da faixa da aposentadoria ('+ CAST(@idade AS VARCHAR(3))+' anos)'
 ```
 ---
 ## Aula 4 + Aula 5
