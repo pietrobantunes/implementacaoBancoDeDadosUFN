@@ -1,7 +1,7 @@
 # Implementação de Banco de Dados
 ---
 ## Aula 7
-- **FUNÇÕES: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
+- **FUNÇÕES & STORED PROCEDURE (PROCEDIMENTO ARMAZENADO): https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
 
 ```
 -- FUNÇÕES ESCALARES
@@ -83,11 +83,100 @@ GO
 
 SELECT *
 FROM dbo.fn_funcionariosDepartamento('Pesquisa')
+GO
 
 --------------------
 
 -- FUNÇÕES MULTI-STATEMENT
+CREATE OR ALTER FUNCTION fn_salarioAnual()
+RETURNS @SalAno TABLE
+(
+	nome_completo VARCHAR(100),
+	salario DECIMAL(10,2),
+	salario_anual DECIMAL(10,2)
+)
+AS
+BEGIN
+	INSERT INTO @SalAno
+	SELECT
+		CONCAT(F.Pnome, ' ', F.Minicial, ' ', F.Unome),
+		F.Salario,
+		F.Salario * 13 + (F.Salario * 0.3)
+	FROM FUNCIONARIO AS F
+	RETURN;
+END;
+GO
 
+SELECT * FROM dbo.fn_salarioAnual();
+GO
+```
+```
+-- PROCEDIMENTO ARMAZENADO
+CREATE OR ALTER PROCEDURE sp_exibe_meu_nome
+AS
+BEGIN
+	PRINT 'Pietro B. Antunes';
+END
+GO
+
+EXEC sp_exibe_meu_nome
+GO
+
+--------------------
+
+CREATE OR ALTER PROCEDURE sp_aumento(
+	@porcentagem DECIMAL(3,1),
+	@cpf CHAR(11)
+)
+AS
+BEGIN
+	UPDATE FUNCIONARIO
+	SET Salario = Salario * (1+(@porcentagem/100))
+	WHERE Cpf = @cpf
+END
+GO
+
+EXEC dbo.sp_aumento @porcentagem = 50, @cpf = '98765432300';
+SELECT * FROM FUNCIONARIO
+GO
+
+--------------------
+
+CREATE OR ALTER PROCEDURE sp_criar_departamento(
+	@dep_nome VARCHAR(15),
+	@dep_numero INT,
+	@dep_local VARCHAR(15)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT Dnome FROM DEPARTAMENTO WHERE Dnome = @dep_nome)
+		BEGIN
+			PRINT 'Esse departamento já existe'
+			RETURN;
+		END
+	ELSE
+		BEGIN
+		INSERT INTO DEPARTAMENTO(Dnome, Dnumero)
+			VALUES(@dep_nome, @dep_numero)
+		INSERT INTO LOCALIZACAO_DEP(Dnumero, Dlocal)
+			VALUES(@dep_numero, @dep_local)
+		END
+END
+GO
+
+EXEC dbo.sp_criar_departamento 'Jogos', 30, 'Santa Maria';
+
+SELECT * FROM DEPARTAMENTO
+SELECT * FROM LOCALIZACAO_DEP
+GO
+
+--------------------
+
+-- PROCEDIMENTO ARMAZENADO CRIPTOGRAFADO
+CREATE OR ALTER PROCEDURE sp_funcionarios
+WITH ENCRYPTION
+AS
+SELECT * FROM FUNCIONARIO
 ```
 ---
 ## Aula 6
