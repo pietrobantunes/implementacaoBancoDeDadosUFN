@@ -4,6 +4,7 @@
 - **FUNÇÕES: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
 
 ```
+-- FUNÇÕES ESCALARES
 CREATE OR ALTER FUNCTION fn_Dobro(@Numero DECIMAL(10,2))
 RETURNS DECIMAL(10,2)
 AS
@@ -59,9 +60,33 @@ SELECT
 	D.Datanasc,
 	dbo.fn_CalculaIdade(D.Datanasc) AS 'Idade'
 FROM DEPENDENTE AS D
+GO
 
 --------------------
 
+-- FUNÇÕES INLINE
+CREATE OR ALTER FUNCTION fn_funcionariosDepartamento(@DepartamentoNome VARCHAR(20))
+RETURNS TABLE
+AS
+RETURN
+(
+	SELECT
+		F.Pnome,
+		F.Unome,
+		D.Dnome AS 'Departamento'
+	FROM FUNCIONARIO AS F
+	JOIN DEPARTAMENTO AS D
+	ON F.Dnr = D.Dnumero
+	WHERE D.Dnome = @DepartamentoNome
+);
+GO
+
+SELECT *
+FROM dbo.fn_funcionariosDepartamento('Pesquisa')
+
+--------------------
+
+-- FUNÇÕES MULTI-STATEMENT
 
 ```
 ---
