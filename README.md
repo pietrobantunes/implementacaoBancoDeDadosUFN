@@ -1,5 +1,70 @@
 # Implementação de Banco de Dados
 ---
+## Aula 7
+- **FUNÇÕES: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
+
+```
+CREATE OR ALTER FUNCTION fn_Dobro(@Numero DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+AS
+BEGIN
+	RETURN @Numero * 2
+END
+GO
+
+SELECT dbo.fn_Dobro(250);
+
+DECLARE @menor_salario DECIMAL (10,2)
+SELECT @menor_salario = MIN(Salario)
+FROM FUNCIONARIO;
+SELECT
+	F.Pnome,
+	F.Unome,
+	F.Salario
+FROM FUNCIONARIO AS F
+WHERE F.Salario > dbo.fn_Dobro(@menor_salario)
+GO
+
+--------------------
+
+CREATE OR ALTER FUNCTION fn_CalculaIdade(@dataNasc DATE)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @idade INT,
+			@anoAtual INT
+
+	SET @anoAtual = YEAR(GETDATE());
+
+	IF MONTH(@dataNasc) > MONTH(GETDATE())
+		SET @idade = ((@anoAtual - YEAR(@dataNasc)) - 1);
+	ELSE IF (MONTH(@dataNasc) = MONTH(GETDATE()) 
+		AND DAY(@dataNasc) > DAY(GETDATE()))
+		SET @idade = ((@anoAtual - YEAR(@dataNasc)) - 1);
+	ELSE
+		SET @idade = @anoAtual - YEAR(@dataNasc);
+	RETURN @idade
+END
+GO
+
+SELECT
+	F.Pnome,
+	F.Unome,
+	F.Datanasc,
+	dbo.fn_CalculaIdade(F.Datanasc) AS 'Idade'
+FROM FUNCIONARIO AS F
+
+SELECT
+	D.Nome_dependente,
+	D.Datanasc,
+	dbo.fn_CalculaIdade(D.Datanasc) AS 'Idade'
+FROM DEPENDENTE AS D
+
+--------------------
+
+
+```
+---
 ## Aula 6
 - **VARIÁVEIS: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2004%20-%20Vari%C3%A1veis%20-%20Convers%C3%B5es%20-%20If%20Else%20-%20While.pdf**
 
