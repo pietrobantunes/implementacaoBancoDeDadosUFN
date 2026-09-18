@@ -1,6 +1,6 @@
 # Implementação de Banco de Dados
 ---
-## Aula 7
+## Aula 7 + 8
 - **FUNÇÕES & STORED PROCEDURE (PROCEDIMENTO ARMAZENADO): https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
 
 ```
@@ -169,6 +169,32 @@ EXEC dbo.sp_criar_departamento 'Jogos', 30, 'Santa Maria';
 SELECT * FROM DEPARTAMENTO
 SELECT * FROM LOCALIZACAO_DEP
 GO
+
+--------------------
+
+CREATE OR ALTER PROCEDURE sp_cadastro(
+	@Pnome VARCHAR(15),
+	@Minicial CHAR(1),
+	@Unome VARCHAR(15),
+	@Cpf CHAR(11)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT 1 FROM FUNCIONARIO WHERE Pnome = @Pnome AND Minicial = @Minicial AND Unome = @Unome)
+		PRINT 'Já existe um funcionario com este mesmo nome'
+	ELSE
+		BEGIN
+			INSERT INTO FUNCIONARIO(Pnome, Minicial, Unome, Cpf)
+			VALUES(@Pnome, @Minicial, @Unome, @Cpf)
+			PRINT 'Usuário cadastrado'
+		END
+END
+GO
+
+EXEC dbo.sp_cadastro 'Jorge', 'J', 'Marcio', '423643326';
+EXEC dbo.sp_cadastro 'Jorge', 'J', 'Marcio', '231551351';
+
+SELECT * FROM FUNCIONARIO WHERE Pnome = 'Jorge'
 
 --------------------
 
