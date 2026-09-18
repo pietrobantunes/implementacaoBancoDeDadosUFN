@@ -203,6 +203,41 @@ CREATE OR ALTER PROCEDURE sp_funcionarios
 WITH ENCRYPTION
 AS
 SELECT * FROM FUNCIONARIO
+GO
+
+--------------------
+
+-- PARÂMETROS DE SAÍDA (OUTPUT)
+CREATE OR ALTER PROCEDURE sp_duplica (@valor AS INT OUTPUT) -- coloca a execução do procedure e salva na variável
+AS
+SELECT @valor*2
+RETURN
+GO
+
+DECLARE @numero AS INT = 15;
+EXEC sp_duplica @numero
+PRINT @numero; -- não será cobrado em prova
+GO
+
+--------------------
+
+CREATE OR ALTER PROCEDURE sp_salario (
+	@dpt INT,
+	@salario_total DECIMAL(10,2) OUTPUT
+	)
+AS
+BEGIN
+	SELECT @salario_total = SUM(F.Salario)
+	FROM FUNCIONARIO AS F
+	WHERE Dnr = @dpt
+	IF @salario_total IS NULL
+		SET @salario_total = 0
+END
+GO
+
+DECLARE @s_total DECIMAL(10,2)
+EXEC sp_salario 5, @s_total OUTPUT;
+PRINT 'O Salário total é: ' + CAST(@s_total AS VARCHAR(20))
 ```
 ---
 ## Aula 6
