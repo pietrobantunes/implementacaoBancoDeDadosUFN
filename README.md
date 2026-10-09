@@ -1,4 +1,43 @@
 # Implementação de Banco de Dados
+## Aula 10 + 11
+- **Transações e ACID: https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2006%20-%20Transa%C3%A7%C3%B5es.pdf**
+	- Uma transação em banco de dados é um conjunto de operações que são tratadas como uma única unidade de trabalho. Essas operações podem incluir inserções, atualizações, exclusões ou consultas.
+ 	- Uma transação deve ser completamente concluída ou completamente revertida para garantir que o banco de dados permaneça em um estado consistente.
+	- O principal objetivo de uma transação é garantir a integridade e consistência dos dados, mesmo diante de falhas, como erros no sistema ou interrupções inesperadas.
+
+   	- ACID:
+
+	 	- ATOMACIDADE: A atomicidade garante que uma transação é tratada como uma única
+	unidade, o que significa que ela deve ser completamente concluída
+	ou totalmente desfeita. Se qualquer parte da transação falhar, todo
+	o resto também falha.
+	
+		- CONSISTÊNCIA: A consistência garante que uma transação leve o banco de dados de
+	um estado válido para outro estado válido, respeitando todas as
+	regras definidas, como chaves primárias, integridade referencial, etc.
+	
+		- ISOLAMENTO: O isolamento garante que as transações sejam executadas de forma
+	isolada, sem que as operações de uma transação afetem as
+	operações de outra. O nível de isolamento pode variar, afetando a
+	visibilidade das mudanças feitas por transações concorrentes.
+	
+		- DURABILIDADE: A durabilidade garante que, uma vez que uma transação é
+	confirmada (committed), ela permanecerá no banco de dados,
+	mesmo que ocorra uma falha no sistema. Os dados serão persistidos
+	no armazenamento.
+
+	- Comando TRANSACTION: É utilizado para gerenciar uma sequência de operações (transações)
+no banco de dados, garantindo que essas operações sejam
+executadas de maneira segura e consistente.
+
+<img width="808" height="308" alt="image" src="https://github.com/user-attachments/assets/ae2bd461-1cc7-4aef-81c4-03728c92765c" />
+
+```
+```
+
+---
+## Aula 9
+- Avaliação I
 ---
 ## Aula 7 + 8
 - **FUNÇÕES & STORED PROCEDURE (PROCEDIMENTO ARMAZENADO): https://github.com/Herysson/Implementacao-de-Banco-de-Dados/blob/main/Aula%2005%20-%20Functions%20e%20Stored%20Procedures.pdf**
