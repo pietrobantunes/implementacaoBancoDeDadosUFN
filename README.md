@@ -33,8 +33,104 @@ executadas de maneira segura e consistente.
 <img width="808" height="308" alt="image" src="https://github.com/user-attachments/assets/ae2bd461-1cc7-4aef-81c4-03728c92765c" />
 
 ```
-```
+CREATE DATABASE CAIXA;
 
+USE CAIXA;
+
+CREATE TABLE conta(
+	id INT PRIMARY KEY,
+	Nome VARCHAR(50),
+	Saldo MONEY
+);
+
+INSERT INTO CONTA
+VALUES  (10, 'Maria', 500),
+		(20, 'João', 1500),
+		(30, 'Paulo', 30000),
+		(40, 'Maria', 50000);
+GO;
+
+--------------------------------
+
+-- Primeira transação
+BEGIN TRAN;
+	DECLARE @erro INT = 0;
+	INSERT INTO CONTA
+	VALUES	(50, 'Pedro', 50);
+	SET @erro = @erro + @@ERROR -- Caso ocorra erro no insert, coloque o código do erro na variável
+
+	INSERT INTO CONTA
+	VALUES	(10, 'Judas', 666);
+	SET @erro = @erro + @@ERROR
+
+	SELECT * FROM CONTA;
+
+	IF @erro <> 0 -- Diferente de zero
+	BEGIN
+		PRINT 'Transação revertida';
+		ROLLBACK TRAN;
+	END
+	ELSE
+	BEGIN
+		PRINT 'Transação realizada com sucesso!';
+		ROLLBACK TRAN;
+END
+
+SELECT * FROM CONTA;
+GO;
+
+--------------------------------
+
+BEGIN TRAN;
+UPDATE CONTA
+SET Saldo = saldo + 10000
+WHERE Nome = 'Maria';
+IF @@ROWCOUNT <> 1
+BEGIN
+	SELECT * FROM CONTA;
+	ROLLBACK TRAN;
+	SELECT * FROM CONTA;
+END
+ELSE
+	COMMIT TRAN;
+GO;
+
+--------------------------------
+
+-- Transferir dinheiro de uma pessoa para outra
+CREATE OR ALTER PROCEDURE sp_Transacao(
+	@origem MONEY,
+	@destino MONEY,
+	@valor MONEY
+)
+AS
+BEGIN
+	BEGIN TRAN
+	UPDATE CONTA
+	SET Saldo = Saldo - @valor
+	WHERE id = @origem;
+
+	UPDATE CONTA
+	SET Saldo = Saldo + @valor
+	WHERE id = @destino;
+	
+	IF (SELECT Saldo FROM CONTA WHERE id = @origem) < 0
+	BEGIN
+		SELECT * FROM CONTA;
+		ROLLBACK TRAN;
+		SELECT * FROM CONTA;
+	END
+	ELSE
+	BEGIN
+		COMMIT TRAN;
+		SELECT * FROM CONTA
+	END
+END
+GO
+
+EXEC dbo.sp_Transacao @origem = 40, @destino = 20, @valor = 10000;
+GO
+```
 ---
 ## Aula 9
 - Avaliação I
