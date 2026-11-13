@@ -1,0 +1,66 @@
+CREATE DATABASE INDICE;
+USE INDICE;
+
+CREATE TABLE Funcionario(
+	Id INT PRIMARY KEY,
+	Nome VARCHAR(100),
+	Cargo VARCHAR(50),
+	Salario DECIMAL(10,2),
+	DataAdmissao DATE
+);
+
+INSERT INTO Funcionario
+VALUES 
+	(1,'Jão', 'Adm', 3500, GETDATE()),
+	(2,'Paulo', 'Tec', 3500, GETDATE()),
+	(3,'Juca', 'TI', 250, GETDATE()),
+	(4,'Maria', 'TI', 12500, GETDATE()),
+	(5,'Cezar', 'Tec', 2500, GETDATE())
+ 
+DECLARE @Contador INT = 1;
+DECLARE @Id INT;
+
+SELECT @Id = ISNULL(MAX(Id),0) FROM Funcionario;
+
+WHILE @Contador <= 300000
+BEGIN
+	SET @Id = @Id +1;
+
+	INSERT INTO Funcionario
+	VALUES
+	(
+		@Id, 
+		'Funcionário '+ CAST(@Id AS VARCHAR(10)),
+		CASE @Contador % 5
+			WHEN 0 THEN 'Gerente'
+			WHEN 1 THEN 'Desenvolvedor'
+			WHEN 2 THEN 'Analista'
+			WHEN 3 THEN 'Suporte'
+			ELSE 'Financeiro'
+		END,
+	FLOOR(10000 * RAND()) + 1600,
+	DATEADD(DAY, @Contador % 3650, '20150101')
+	)
+
+	SET @Contador = @Contador +1;
+END
+
+SELECT * FROM Funcionario;
+
+GO
+
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+
+SELECT * FROM Funcionario WHERE Id = 255000;
+
+SELECT * FROM Funcionario WHERE Nome = 'Funcionario 255000';
+
+INSERT INTO Funcionario
+VALUES 
+	(300100,'Jão', 'Adm', 3500, GETDATE());
+
+CREATE NONCLUSTERED INDEX ix_funcionario_Nome
+ON FUNCIONARIO(Nome);
+
+DROP INDEX ix_funcionario_Nome ON FUNCIONARIO;
